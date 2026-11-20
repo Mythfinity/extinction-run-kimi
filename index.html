@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111510">
+  <meta name="description" content="A playable, fan-made arcade brawler demo inspired by Cadillacs and Dinosaurs.">
+  <title>Cadillacs & Dinosaurs — Extinction Run</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="mini-brand" href="./" aria-label="Cadillacs and Dinosaurs home">
+        <span class="brand-mark" aria-hidden="true">C<span>&</span>D</span>
+        <span>EXTINCTION RUN <small>ARCADE DEMO</small></span>
+      </a>
+      <div class="header-actions">
+        <button id="help-button" class="icon-button" type="button" aria-label="How to play" title="How to play">?</button>
+        <button id="audio-button" class="icon-button" type="button" aria-label="Mute sound" title="Mute sound" aria-pressed="false">
+          <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a3.5 3.5 0 0 0-1.5-2.87v5.74A3.5 3.5 0 0 0 16.5 12zm-1.5-7.1v2.06a6 6 0 0 1 0 10.08v2.06a8 8 0 0 0 0-14.2z"/></svg>
+          <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.6 3 2.2-2.2-1.4-1.4-2.2 2.2L13 8.4v2.8l.8.8-.8.8v2.8l2.2-2.2 2.2 2.2 1.4-1.4-2.2-2.2z"/></svg>
+        </button>
+        <button id="theme-button" class="icon-button" type="button" aria-label="Switch to light theme" title="Switch theme">
+          <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5 1 3h-2l1-3zm0 20-1-3h2l-1 3zM2 12l3-1v2l-3-1zm20 0-3 1v-2l3 1zM4.2 4.2l2.8 1.4L5.6 7 4.2 4.2zm15.6 15.6L17 18.4 18.4 17l1.4 2.8zM19.8 4.2 18.4 7 17 5.6l2.8-1.4zM4.2 19.8 5.6 17 7 18.4l-2.8 1.4z"/></svg>
+          <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.7 15.3A9 9 0 0 1 8.7 3.3 9 9 0 1 0 20.7 15.3z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="game-heading" aria-labelledby="game-title">
+        <div>
+          <p class="eyebrow">A LOST WORLD. ONE LAST RIDE.</p>
+          <h1 id="game-title"><span>CADILLACS</span><b>&amp;</b> DINOSAURS</h1>
+        </div>
+        <div class="demo-stamp" aria-label="Playable demo version 1.0">PLAYABLE<br><strong>DEMO</strong><span>V.1.0</span></div>
+      </section>
+
+      <section id="game-frame" class="game-frame" aria-label="Cadillacs and Dinosaurs game">
+        <div class="cabinet-top"><span></span><i></i><span></span></div>
+        <div id="screen-wrap" class="screen-wrap">
+          <canvas id="game-canvas" width="960" height="540" tabindex="0" aria-label="Arcade game canvas. Use arrow keys to move, J to attack, K to jump, and L for a special attack."></canvas>
+          <div class="scanlines" aria-hidden="true"></div>
+
+          <div id="start-screen" class="game-overlay start-screen">
+            <div class="title-lockup">
+              <p>THE 26TH CENTURY</p>
+              <h2>EXTINCTION<br><span>RUN</span></h2>
+              <div class="title-rule"><i></i><b>◆</b><i></i></div>
+              <p class="mission-copy">The jungle is rising. The poachers are armed.<br>Take back the old highway.</p>
+            </div>
+            <div class="select-label"><span>SELECT YOUR FIGHTER</span></div>
+            <div id="character-select" class="character-select" role="radiogroup" aria-label="Select your fighter">
+              <button class="character-card selected" type="button" role="radio" aria-checked="true" data-character="jack">
+                <span class="portrait portrait-jack" aria-hidden="true"><i></i></span>
+                <span class="character-info"><strong>JACK</strong><small>BALANCED</small><span class="stat-dots" aria-label="Balanced stats">●●●○</span></span>
+              </button>
+              <button class="character-card" type="button" role="radio" aria-checked="false" data-character="hannah">
+                <span class="portrait portrait-hannah" aria-hidden="true"><i></i></span>
+                <span class="character-info"><strong>HANNAH</strong><small>FAST</small><span class="stat-dots" aria-label="High speed">●●●●</span></span>
+              </button>
+              <button class="character-card" type="button" role="radio" aria-checked="false" data-character="mustapha">
+                <span class="portrait portrait-mustapha" aria-hidden="true"><i></i></span>
+                <span class="character-info"><strong>MUSTAPHA</strong><small>AGILE</small><span class="stat-dots" aria-label="High agility">●●●●</span></span>
+              </button>
+              <button class="character-card" type="button" role="radio" aria-checked="false" data-character="mess">
+                <span class="portrait portrait-mess" aria-hidden="true"><i></i></span>
+                <span class="character-info"><strong>MESS</strong><small>POWER</small><span class="stat-dots" aria-label="Maximum power">●●●●</span></span>
+              </button>
+            </div>
+            <button id="start-button" class="primary-button" type="button"><span>START ENGINE</span><kbd>ENTER</kbd></button>
+            <p class="start-hint">1 PLAYER <span>•</span> FREE PLAY <span>•</span> HIGH SCORE <b id="menu-high-score">000000</b></p>
+          </div>
+
+          <div id="pause-screen" class="game-overlay modal-screen hidden">
+            <div class="modal-card">
+              <p class="eyebrow">ENGINE IDLING</p>
+              <h2>PAUSED</h2>
+              <p>Catch your breath. The jungle can wait.</p>
+              <button id="resume-button" class="primary-button" type="button">RESUME <kbd>P</kbd></button>
+              <button id="restart-pause-button" class="text-button" type="button">Restart run</button>
+            </div>
+          </div>
+
+          <div id="end-screen" class="game-overlay modal-screen hidden">
+            <div class="modal-card end-card">
+              <p id="end-eyebrow" class="eyebrow">THE HIGHWAY IS SAFE</p>
+              <h2 id="end-title">RUN COMPLETE</h2>
+              <p id="end-message">The Tyrant has fallen. For now, the balance is restored.</p>
+              <div class="score-summary"><span>FINAL SCORE<strong id="final-score">000000</strong></span><span>BEST COMBO<strong id="final-combo">0×</strong></span></div>
+              <button id="restart-button" class="primary-button" type="button">RIDE AGAIN <kbd>ENTER</kbd></button>
+              <button id="character-button" class="text-button" type="button">Choose another fighter</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="touch-controls" class="touch-controls" aria-label="Touch game controls">
+          <div class="touch-dpad">
+            <button type="button" data-key="ArrowUp" class="touch-up" aria-label="Move up">▲</button>
+            <button type="button" data-key="ArrowLeft" class="touch-left" aria-label="Move left">◀</button>
+            <span class="dpad-center" aria-hidden="true"></span>
+            <button type="button" data-key="ArrowRight" class="touch-right" aria-label="Move right">▶</button>
+            <button type="button" data-key="ArrowDown" class="touch-down" aria-label="Move down">▼</button>
+          </div>
+          <div class="touch-actions">
+            <button type="button" data-key="KeyL" class="touch-special" aria-label="Special attack"><span>L</span><small>SPECIAL</small></button>
+            <button type="button" data-key="KeyK" class="touch-jump" aria-label="Jump"><span>K</span><small>JUMP</small></button>
+            <button type="button" data-key="KeyJ" class="touch-attack" aria-label="Attack"><span>J</span><small>ATTACK</small></button>
+          </div>
+        </div>
+      </section>
+
+      <div class="under-game">
+        <div class="controls-strip" aria-label="Keyboard controls">
+          <span><span class="key-group"><kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd></span> MOVE</span>
+          <span><kbd>J</kbd> ATTACK</span>
+          <span><kbd>K</kbd> JUMP</span>
+          <span><kbd>L</kbd> SPECIAL</span>
+          <span><kbd>P</kbd> PAUSE</span>
+        </div>
+        <button id="fullscreen-button" class="fullscreen-button" type="button" aria-label="Enter fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg> FULLSCREEN</button>
+      </div>
+
+      <footer class="site-footer">
+        <p><span class="status-light"></span> INSERT COIN NOT REQUIRED</p>
+        <p>An unofficial fan-made demo. Original procedural art &amp; sound.</p>
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="help-dialog" class="help-dialog">
+    <button id="close-help" class="dialog-close" type="button" aria-label="Close instructions">×</button>
+    <p class="eyebrow">FIELD MANUAL</p>
+    <h2>HOW TO SURVIVE</h2>
+    <div class="help-grid">
+      <section><span class="help-number">01</span><h3>Own the road</h3><p>Move in eight directions. Line up with enemies on the road to land your hits.</p></section>
+      <section><span class="help-number">02</span><h3>Chain your attacks</h3><p>Press attack repeatedly for a three-hit combo. The final strike sends enemies flying.</p></section>
+      <section><span class="help-number">03</span><h3>Use your specials</h3><p>Jump over danger. Your special clears nearby enemies, but costs a little health.</p></section>
+      <section><span class="help-number">04</span><h3>Restore the balance</h3><p>Smash crates, grab food to heal, defeat each wave, and reach the Tyrant at the highway’s end.</p></section>
+    </div>
+    <button id="help-ready" class="primary-button" type="button">READY TO RIDE</button>
+  </dialog>
+
+  <script src="game.js"></script>
+</body>
+</html>
